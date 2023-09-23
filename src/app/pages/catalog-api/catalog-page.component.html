@@ -1,0 +1,34 @@
+<section class="catalog">
+  <div class="container catalog__container">
+    <h1 class="catalog__title">{{title}}</h1>
+    <div class="action-container">
+      <app-toggle
+        [toggleBtns]="toggleBtns"
+        [itemActive]="keyToggleActive"
+        (toggleChanged)="filter($event)"
+      >
+      </app-toggle>
+      <div class="catalog__actions actions">
+        <app-search class="actions__item" id="search" placeholder="Поиск по названию"></app-search>
+        <app-select
+          (queryParams)="applyQuery( {'orderBy': $event} )"
+          [options]="options"
+          [selected]='selected'
+          class="actions__item"
+        ></app-select>
+      </div>
+    </div>
+    <ng-container class="catalog__container" *ngIf="data$ | async as data; else loading">
+      <div class="products__container">
+        <app-products
+          [data]="data.items"
+          [meta]="data.meta"
+        ></app-products>
+      </div>
+      <br>
+    </ng-container>
+    <ng-template #loading>
+      <pre>Загрузка...</pre>
+    </ng-template>
+  </div>
+</section>

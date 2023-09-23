@@ -1,0 +1,27 @@
+.nav__list {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.nav__link {
+  display: flex;
+  align-self: center;
+  color: #a1a1a1;
+  text-decoration: none;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.active {
+  color: blue;
+}

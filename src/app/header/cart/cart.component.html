@@ -1,0 +1,68 @@
+<div class="cart__header">
+  <div class="card__buttons">
+    <h4 style="margin-top: 0; margin-bottom: 10px;">Итого: {{getTotalPrice() | currency}}</h4>
+    <app-button-flat
+      icon="close"
+      color="#333"
+      bgColor="#fff"
+      (click)="closeCart()"
+    ></app-button-flat>
+  </div>
+  <div>
+    <app-button
+      class="btn-margin"
+      routerLink="/checkout"
+      buttonType="border"
+      size="small" text="Оформить"
+      (click)="checkout()"
+      ></app-button>
+    <app-button
+      class="btn-margin"
+      buttonType="border"
+      size="small" text="Очистить карзину"
+      (click)="clearCart()"
+    ></app-button>
+  </div>
+</div>
+<div class="cart scroll">
+  <div class="card__container" *ngFor="let product of products">
+    <div class="card-img-container">
+      <img
+        class="picture"
+        [routerLink]="['/products', product.product.id]"
+        src="{{product.product.image}}"
+        alt="{{product.product.title}}"
+      >
+    </div>
+    <div class="card">
+      <div class="card-data">
+        <h4 class="card-header">{{product.product.title}}</h4>
+        <p class="card-price">{{product.product.price | currency}}</p>
+      </div>
+      <div class="card__buttons buttons__count">
+        <app-button-flat
+          icon="do_not_disturb_on"
+          color="#333"
+          bgColor="#fff"
+          (click)="minusProduct(product.product.id)"
+        ></app-button-flat>
+
+        <span>{{product.count}}</span>
+
+        <app-button-flat
+          icon="add_circle"
+          color="#333"
+          bgColor="#fff"
+          (click)="plusProduct(product.product.id)"
+        ></app-button-flat>
+      </div>
+      <div class="card__buttons">
+        <app-button
+          (click)="removeProduct(product.product.id)"
+          buttonType="border"
+          type size="small"
+          text="Удалить"></app-button>
+      </div>
+    </div>
+  </div>
+</div>

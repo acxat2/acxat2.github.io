@@ -1,0 +1,131 @@
+<section class="container">
+  <p>Оформление заказа</p>
+  <form class="form" [formGroup]="checkoutForm" (ngSubmit)="sendForm()">
+    <p>Данные покупателя</p>
+    <section class="form-block">
+      <div class="form-group">
+        <label class="form-label">Фамилия Имя *</label>
+        <input
+          type="text"
+          class="form-input"
+          name="name"
+          placeholder="Не менее двух слов"
+          formControlName="name"
+        >
+
+        <ng-error *ngIf="
+        submitted && fNameControl?.hasError('pattern')"
+          message="Не валидное имя"
+        ></ng-error>
+
+      </div>
+      <div class="form-group">
+        <label class="form-label">Телефон *</label>
+        <input
+          type="tel"
+          class="form-input"
+          name="phon"
+          placeholder="Мобильный телефон"
+          formControlName="phon"
+        >
+
+        <ng-error *ngIf="
+          fPhonControl?.hasError('required')"
+          message="Заполните поле"
+        ></ng-error>
+        <ng-error *ngIf="
+        submitted && fPhonControl?.hasError('pattern')"
+          message="Не валидный номер"
+        ></ng-error>
+
+      </div>
+    </section>
+    <div class="form-group">
+      <p>Способ получения товара</p>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="name"
+          id="radioOne"
+          checked
+          (click)="deliveryChecked(false)"
+        >
+        <div class="check-label-container">
+          <label for="radioOne" class="form-label form-check-label">Самовывоз</label>
+        </div>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="name"
+          id="radioTwo"
+          (click)="deliveryChecked(true)"
+        >
+        <div class="check-label-container">
+          <label for="radioTwo" class="form-label form-check-label">Доставка</label>
+        </div>
+      </div>
+    </div>
+    <section class="form-delivery" *ngIf="delivery" formGroupName="address">
+      <p>Адрес доставки</p>
+      <div class="form-group">
+        <label class="form-label">Город:</label>
+        <input class="form-input" name="city" formControlName="city">
+        <ng-error *ngIf="
+          submitted && fCityControl?.hasError('required')"
+          message="Заполните поле"
+        ></ng-error>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Улица:</label>
+        <input class="form-input" name="street" formControlName="street">
+        <ng-error *ngIf="
+          submitted && fStreetControl?.hasError('required')"
+          message="Заполните поле"
+        ></ng-error>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Дом:</label>
+        <input class="form-input" name="house" formControlName="house">
+        <ng-error *ngIf="
+          submitted && fHouseControl?.hasError('required')"
+          message="Заполните поле"
+        ></ng-error>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Квартира (если есть):</label>
+        <input class="form-input" name="flat" formControlName="flat">
+      </div>
+    </section>
+    <div class="form-group" formGroupName="pay">
+      <p>Оплата</p>
+      <div class="form-check" *ngIf="!delivery">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="cash"
+          id="checkboxOne"
+          formControlName="cash"
+        >
+        <div class="check-label-container">
+          <label for="checkboxOne" class="form-label form-check-label">Наличные</label>
+        </div>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="card"
+          id="checkboxTwo"
+          formControlName="card"
+        >
+        <div class="check-label-container">
+          <label for="checkboxTwo" class="form-label form-check-label">Карта</label>
+        </div>
+      </div>
+    </div>
+    <app-button text="Отправить" buttonType="border"></app-button>
+  </form>
+</section>

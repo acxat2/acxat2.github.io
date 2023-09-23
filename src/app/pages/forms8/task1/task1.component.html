@@ -1,0 +1,69 @@
+<p>"{{title}}"</p>
+
+<section class="container">
+  <p>Регистрация пользователя</p>
+  <form class="form" #form="ngForm" (ngSubmit)="sendForm(form)" [ngFormOptions]="{updateOn: 'blur'}">
+    <div class="form-block">
+      <div class="form-group">
+        <label for="" class="form-label">Имя Фамилия</label>
+        <input
+          type="text"
+          class="form-input"
+          name="name"
+          placeholder="Не менее двух слов"
+          ngModel
+          #name="ngModel"
+          required
+          pattern="[A-ZА-Я][a-zа-я]*( *[A-ZА-Я][a-zа-я]*){1,2}"
+        >
+        <ng-error *ngIf="name.hasError('pattern')" message="Не корректное имя"></ng-error>
+      </div>
+      <div class="form-group">
+        <label for="" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-input"
+          name="email"
+          placeholder="user@google.com"
+          ngModel
+          #email="ngModel"
+          required
+          pattern="\w{1,}@\w{1,}.\w{2,3}"
+        >
+        <ng-error *ngIf="email.hasError('pattern')" message="Не валидный Email"></ng-error>
+      </div>
+    </div>
+    <div
+      class="form-block"
+      ngModelGroup="password"
+      #passwordGroup="ngModelGroup"
+      appPasswordMatch
+    >
+      <div class="form-group">
+        <label for="" class="form-label">Пароль</label>
+        <input
+          type="password"
+          class="form-input"
+          name="password"
+          placeholder="a-z, A-Z, 1-9, символы"
+          ngModel
+          #password="ngModel"
+          required
+          pattern="^(?=.*[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$"
+        >
+        <ng-error *ngIf="password.hasError('pattern')" message="Не валидный пароль"></ng-error>
+      </div>
+      <div class="form-group">
+        <label for="" class="form-label">Повторить пароль</label>
+        <input
+          type="password"
+          class="form-input"
+          name="confirm"
+          ngModel
+          required
+          >
+      </div>
+    </div>
+    <app-button text="Отправить" buttonType="border"></app-button>
+  </form>
+</section>

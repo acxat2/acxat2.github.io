@@ -1,0 +1,57 @@
+<header class="header">
+  <div class="header__nav nav">
+    <ul class="nav__list">
+      <li class="nav__item products-api">
+        <a
+          routerLinkActive="active"
+          class="nav__link margin"
+          routerLink="/products"
+        >Каталог</a>
+      </li>
+      <li class="nav__item">
+        <a
+          routerLinkActive="active"
+          class="nav__link margin"
+          routerLink="/form"
+        >Form</a>
+      </li>
+      <li class="nav__item">
+        <a
+          routerLinkActive="active"
+          class="nav__link margin"
+          routerLink="/products-more"
+        >HTTP Advanced-More</a>
+      </li>
+    </ul>
+  </div>
+  <div class="header__bar">
+    <app-button-flat
+      class="top-bar__item"
+      icon="favorite_border"
+      color="#333"
+      bageTop="-0.3em"
+      bageRight="0"
+      bgColor="inherit"
+      [bage]='favoriteService.getCount()'
+      (click)="null"
+    ></app-button-flat>
+    <app-button-flat
+      class="top-bar__item"
+      icon='shopping_cart'
+      color="#333"
+      bgColor="inherit"
+      bageTop="-0.3em"
+      bageRight="0"
+      textArea="корзина"
+      [bage]='cartService.getCount()'
+      (click)="showCart()"
+    ></app-button-flat>
+    <app-cart
+      class="cart__container"
+      [class.cart__open]="isActive"
+      (closeBasket)="closeCart()"
+    ></app-cart>
+
+    <button class="top-bar__item btn">Личный кабинет</button>
+  </div>
+</header>

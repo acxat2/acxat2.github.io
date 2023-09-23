@@ -1,0 +1,9 @@
+@import '../../theme/colors.scss';
+
+.error-message {
+  font-size: 12px;
+  position: absolute;
+  left: 5px;
+  bottom: -27px;
+  color: map-get($app-colors, warn)
+}

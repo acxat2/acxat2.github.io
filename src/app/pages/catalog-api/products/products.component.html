@@ -1,0 +1,42 @@
+<div class="nav-products">
+  <div>Cтраницы:
+    <app-button
+      *ngFor="let page of createPagesArray(totalPages); index as i;"
+      [text]="i + 1"
+      [isActive]="i + 1 === currentPage"
+      (click)="applyQuery({'page': (i+1)})"
+    ></app-button>
+     Товаров: {{items}} из {{totalItems}}
+  </div>
+</div>
+<div class="cards__container">
+  <app-card-group class="card__group" *ngFor="let product of products">
+    <app-card class="card">
+      <div class="card__content" #cardContent data-id="{{product.id}}">
+        <div class="card__content-top">
+          <img class="img" src="{{product.image}}" alt="{{product.title}}">
+          <h4 class="card__title">{{product.title}}</h4>
+          <app-card-rating class="card__rating" rating>{{product.rating}}</app-card-rating>
+        </div>
+        <div class="card__content-bottom">
+
+          <app-card-price price>{{product.price | currency}}</app-card-price>
+          <div class="card__btns-container ">
+            <app-card-button-favorite
+            >
+              <button
+                class="flat-btn material-icons"
+                [class.favoriteActive]="product.favorite"
+                #favoriteBtn
+              >{{product.favorite ? 'favorite' : 'favorite_border'}}
+            </button>
+            </app-card-button-favorite>
+            <app-card-button (click)="addToCart(product)">
+              Добавить в корзину
+            </app-card-button>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </app-card-group>
+</div>

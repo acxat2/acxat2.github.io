@@ -1,0 +1,32 @@
+.catalog__container {
+  margin-bottom: 20px;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalog__actions {
+  display: flex;
+}
+
+.actions__item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.button-toggle:not(:last-child) {
+  margin-right: 20px
+}
+
+.toggle__container {
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}

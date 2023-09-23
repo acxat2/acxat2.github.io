@@ -1,0 +1,73 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.nav__link {
+  display: flex;
+  align-self: center;
+  color: #a1a1a1;
+  text-decoration: none;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.products-api {
+  display: flex;
+}
+
+.header__bar {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar__item:not(:last-child) {
+  margin-right: 20px
+}
+
+.btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.margin {
+  margin-right: 10px
+}
+
+.active {
+  color: blue;
+}
+
+.cart__container {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: none;
+  padding: 15px;
+  margin-top: 50px;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.04), 5px 10px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cart__open {
+  display: block;
+}

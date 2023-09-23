@@ -1,0 +1,9 @@
+@import '../../theme/colors.scss';
+
+input {
+  position: relative;
+  padding: 5px 10px;
+  border: 1px solid map-get($app-colors, liteDark);
+  border-radius: 5px;
+  outline: none;
+}

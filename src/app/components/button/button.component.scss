@@ -1,0 +1,67 @@
+@import './button.theme.component.scss';
+@import '../../theme/colors.scss';
+@include them-button($app-colors);
+
+.button-base {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.button-base:not(.active):not(.button-disabled):hover {
+  cursor: pointer;
+}
+
+.default {
+  color: black;
+  background: map-get($app-colors, default);
+  font-size: 14px;
+  &:not(.button-disabled):hover {
+    background-color: darken(map-get($app-colors, default), 5%);
+  }
+  @include active(map-get($app-colors, default));
+}
+
+.large {
+  padding: 15px 25px;
+  font-size: 16px;
+}
+
+.small {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.basic {
+  background-color: transparent;
+  @include transition();
+}
+
+.border {
+  border: 1px solid gainsboro;
+  background-color: transparent;
+  @include transition();
+}
+
+.basic:not(.button-disabled):hover,
+.border:not(.button-disabled):hover {
+  background-color: map-get($app-colors, default);
+  &:active {
+    background-color: darken(map-get($app-colors, default), 5%);
+  }
+}
+
+.button-disabled:hover {
+  cursor: not-allowed;
+}
+
+.active {
+  cursor: default;
+  border: 1px solid blue;
+}
+
+.button-disabled {
+  cursor: default;
+}
+

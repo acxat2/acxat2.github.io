@@ -1,0 +1,149 @@
+@mixin transition() {
+  transition: ease-in-out background-color .1s;
+}
+
+@mixin active($color) {
+  @include transition();
+  &:not(.button-disabled):active {
+    background-color: desaturate($color, 10%);
+  }
+}
+
+@mixin flatColors($color) {
+  background-color: $color;
+
+  &:not(.button-disabled):hover {
+    background-color: darken($color, 10%);
+  }
+  @include active($color);
+}
+
+@mixin strokedColors($default) {
+  &:not(.button-disabled):hover {
+    background-color: darken($default, 10%);
+  }
+  @include active($default);
+}
+
+@mixin borderColors($default) {
+  &:not(.button-disabled):hover {
+    background-color: $default;
+  }
+  @include active($default);
+}
+
+@mixin them-button($colors) {
+  $primary: map-get($colors, primary);
+  $success: map-get($colors, success);
+  $accent: map-get($colors, accent);
+  $warn: map-get($colors, warn);
+  $default: map-get($colors , default);
+  $liteDark: map-get($colors , liteDark);
+  $disabledColor: map-get($colors , disabledColor);
+
+
+  .flat {
+    color: #fff;
+    border: 0px;
+    &.primary {
+      @include flatColors($primary);
+    }
+
+    &.accent {
+      @include flatColors($accent);
+    }
+
+    &.success {
+      @include flatColors($success);
+    }
+
+    &.warning {
+      @include flatColors($warn);
+    }
+
+    &.button-disabled {
+      color: $liteDark;
+      background-color: $disabledColor;
+    }
+
+  }
+
+  .basic {
+    color: black;
+    border: none;
+    &.primary {
+      color: $primary;
+    }
+
+    &.accent {
+      color: $accent;
+    }
+
+    &.warning {
+      color: $warn;
+    }
+
+    &.success {
+      color: $success;
+    }
+
+    &.button-disabled {
+      color: gray;
+      background-color: none;
+      &:hover {
+        background-color: none;
+      }
+    }
+  }
+
+  .stroked {
+    border: 1px solid gainsboro;
+    &.primary {
+      color: $primary;
+      @include strokedColors($default)
+    }
+
+    &.accent {
+      color: $accent;
+      @include strokedColors($default)
+    }
+
+    &.warning {
+      color: $warn;
+      @include strokedColors($default)
+    }
+
+    &.success {
+      color: $success;
+      @include strokedColors($default)
+    }
+
+    &.button-disabled {
+      color: $liteDark;
+      background-color: $disabledColor;
+    }
+  }
+
+  .border {
+    &.primary {
+      color: $primary;
+    }
+
+    &.accent {
+      color: $accent;
+    }
+
+    &.warning {
+      color: $warn;
+    }
+
+    &.success {
+      color: $success;
+    }
+
+    &.button-disabled {
+      color: $liteDark;
+      background-color: $disabledColor;
+    }
+  }
+}

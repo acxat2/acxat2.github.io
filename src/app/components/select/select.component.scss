@@ -1,0 +1,12 @@
+select {
+  padding: 5px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+  transition: ease-in-out background-color 0.2s;
+}
+
+select:hover{
+  background-color: azure;
+}

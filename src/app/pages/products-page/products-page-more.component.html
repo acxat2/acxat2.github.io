@@ -1,0 +1,48 @@
+<h3>{{title}}</h3>
+<section class="page">
+  <div class="container">
+    <div class="products__actions">
+      <div class="products__filters">
+        <app-order-by class="actions__item" (orderBy)="(null)"></app-order-by>
+        <app-select-brand
+          (queryParams)="applyQuery( {'orderBy': $event})"
+          [options]="options"
+          [selected]=selected
+          class="actions__item"
+          (orderBy)="(null)"
+        ></app-select-brand>
+      </div>
+    </div>
+    <ng-container *ngIf="data$ | async as data">
+      <app-products-more
+      [data]="data.items"
+      ></app-products-more>
+      <footer class="footer">
+        <div>
+          <app-button
+            text="Загрузить ещё"
+            (click)="addMore(data.meta.totalPages)"
+            [isDisabled]="isDisabled"
+          ></app-button>
+          <app-button
+            text="Предыдущая"
+            (click)="changePage('-')"
+          ></app-button>
+          <app-button
+            text="Следующая"
+            (click)="changePage('+')"
+          ></app-button>
+        </div>
+        <div>Cтраница:
+          <b>{{getPageNumber()}}</b>
+           из
+          <i>{{getPagesTotal()}}</i>
+          . Загружено товаров:
+          <b>{{getItemCount()}}</b>
+           из
+           <i>{{totalItems(data.meta.totalItems)}}</i>
+        </div>
+      </footer>
+    </ng-container>
+  </div>
+</section>
